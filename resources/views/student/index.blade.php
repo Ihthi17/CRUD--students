@@ -6,7 +6,12 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h2>Laravel 10 Crud</h2>
+                    @if (session()->has('success'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
                 </div>
                 <div class="card-body">
                     <a href="{{ url('/student/create') }}" class="btn btn-success btn-sm" title="Add New Student">
@@ -19,21 +24,20 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
                                     <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Mobile</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($students as $studentData)
+                                @foreach($students as $key => $studentData)
                                 <tr>
-                                    <th scope="row">{{ $studentData->id }}</th>
-                                    <td>{{ $studentData->name }}</td>
+                                    <th scope="row">{{ $key+1 }}</th>
+                                    <td>{{ $studentData->fname }}</td>
+                                    <td>{{ $studentData->lname }}</td>
                                     <td>{{ $studentData->email }}</td>
-                                    <td>{{ $studentData->address }}</td>
-                                    <td>{{ $studentData->phone }}</td>
+                                    
                                     <td>
                                         <a href="{{ url('/student/' . $studentData->id . '/edit') }}"
                                             title="Edit Student"><button class="btn btn-primary btn-sm"><i

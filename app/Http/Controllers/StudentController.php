@@ -34,7 +34,7 @@ return view('student.index')->with('students', $students);
     {
         $input = $request->all();
     Student::create($input);
-    return redirect('student')->with('flash_message', 'Student Addedd!');
+    return redirect('student')->with('success', 'Student Addedd!');
 
 
     }
@@ -65,7 +65,7 @@ return view('student.edit')->with('students', $student);
         $student = Student::find($id);
         $input = $request->all();
         $student->update($input);
-        return redirect('student')->with('flash_message', 'student Updated!');
+        return redirect('student')->with('success', 'student Updated!');
 
     }
 
@@ -75,7 +75,7 @@ return view('student.edit')->with('students', $student);
     public function destroy(string $id)
     {
         Student::destroy($id);
-return redirect('student')->with('flash_message', 'Student deleted!');
+return redirect('student')->with('success', 'Student deleted!');
 
     }
 }
